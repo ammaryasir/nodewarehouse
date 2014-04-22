@@ -13,18 +13,19 @@ if(process.env.OPENSHIFT_MONGODB_DB_URL){
 
 var server = new Server(mongodb_connection_string, 27017, {auto_reconnect: true});
 db = new Db('warehouse', server, {safe: true});
-
-db.open(function(err, db) {
-    if(!err) {
-        console.log("Connected to 'warehousedb' database");
-        db.collection('warehouse', {safe:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'warehouse' collection doesn't exist. Creating it with sample data...");
-                populateDB();
-            }
-        });
-    }
-});
+db.authenticate('admin', 'MqwzSt7PM2Kr', function(err, res) {
+		db.open(function(err, db) {
+			if(!err) {
+			console.log("Connected to 'warehousedb' database");
+			db.collection('warehouse', {safe:true}, function(err, collection) {
+				if (err) {
+				console.log("The 'warehouse' collection doesn't exist. Creating it with sample data...");
+				populateDB();
+				}
+				});
+			}
+			});
+		});
 
 exports.findInboxItems = function(req, res) {
     console.log('Retrieving inbox items.');
