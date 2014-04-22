@@ -5,19 +5,20 @@ var Server = mongo.Server,
     BSON = mongo.BSONPure;
 
 //provide a sensible default for local development
-mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'nodewareouse';
+mongodb_connection_string = 'mongodb://127.0.0.1:27017/';
 //take advantage of openshift env vars when available:
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-	  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'nodewareouse';
+	  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL;
 }
 console.log(mongodb_connection_string);
-var server = new Server(mongodb_connection_string, 27017, {auto_reconnect: true});
+var server = new Server(mongodb_connection_string);
 db = new Db('nodewareouse', server, {safe: true});
-db.authenticate('admin', 'MqwzSt7PM2Kr', function(err, res) {
+
 		if(err)
 			console.log("Connection");
 		db.open(function(err, db) {
 			if(!err) {
+			db.authenticate('admin', 'MqwzSt7PM2Kr', function(err, res) {});
 			console.log("Connected to 'warehousedb' database");
 			db.collection('warehouse', {safe:true}, function(err, collection) {
 				if (err) {
@@ -26,8 +27,8 @@ db.authenticate('admin', 'MqwzSt7PM2Kr', function(err, res) {
 				}
 				});
 			}
-			});
 		});
+
 
 exports.findInboxItems = function(req, res) {
     console.log('Retrieving inbox items.');
