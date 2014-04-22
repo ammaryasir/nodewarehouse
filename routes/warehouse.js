@@ -14,6 +14,8 @@ if(process.env.OPENSHIFT_MONGODB_DB_URL){
 var server = new Server(mongodb_connection_string, 27017, {auto_reconnect: true});
 db = new Db('nodewareouse', server, {safe: true});
 db.authenticate('admin', 'MqwzSt7PM2Kr', function(err, res) {
+		if(err)
+			console.log("Connection");
 		db.open(function(err, db) {
 			if(!err) {
 			console.log("Connected to 'warehousedb' database");
