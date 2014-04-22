@@ -10,7 +10,7 @@ mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'nodewareouse';
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
 	  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'nodewareouse';
 }
-
+console.log(mongodb_connection_string);
 var server = new Server(mongodb_connection_string, 27017, {auto_reconnect: true});
 db = new Db('nodewareouse', server, {safe: true});
 db.authenticate('admin', 'MqwzSt7PM2Kr', function(err, res) {
