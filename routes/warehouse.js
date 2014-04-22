@@ -5,10 +5,10 @@ var Server = mongo.Server,
     BSON = mongo.BSONPure;
 
 //provide a sensible default for local development
-mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'warehouse';
+mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'nodewarehouse';
 //take advantage of openshift env vars when available:
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-	  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'warehouse';
+	  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'nodewarehouse';
 }
 
 var server = new Server(mongodb_connection_string, 27017, {auto_reconnect: true});

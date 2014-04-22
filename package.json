@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "^3.5.1",
-    "mongodb": "^1.1.8",
-    "socket.io": "^0.9.16",
+    "express": "3.5.1",
+    "mongodb": "1.1.8",
+    "socket.io": "0.9.16",
     "zeparser": "0.0.7"
   },
   "engines": {
@@ -20,12 +20,12 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/ammaryasir/IS.git"
+    "url": "https://github.com/ammaryasir/nodewarehouse.git"
   },
   "author": "",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/ammaryasir/IS/issues"
+    "url": "https://github.com/ammaryasir/nodewarehouse/issues"
   },
-  "homepage": "https://github.com/ammaryasir/IS"
+  "homepage": "https://github.com/ammaryasir/nodewarehouse"
 }
