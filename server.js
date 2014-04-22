@@ -5,9 +5,12 @@ var express = require('express'),
     warehouse = require('./routes/warehouse');
 
 var app = express();
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 app.configure(function () {
-    app.set('port', process.env.PORT || 3001);
+    app.set('port', server_port);
+    app.set('ip_address',server_ip_address);
     app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
     app.use(express.bodyParser()),
     app.use(express.static(path.join(__dirname, 'public')));
@@ -23,7 +26,7 @@ var server = http.createServer(app);
 
 var sio = io.listen(server);
 
-server.listen(app.get('port'), function(){
+server.listen(server_port, server_ip_address, function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
